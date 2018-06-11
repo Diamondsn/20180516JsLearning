@@ -1,0 +1,1 @@
+console.log('进程执行中'+process.argv[2]);

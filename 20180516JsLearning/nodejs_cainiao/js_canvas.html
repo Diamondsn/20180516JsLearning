@@ -1,0 +1,37 @@
+<!DOCTYPE=html>
+<html>
+
+<head>
+    <title>test</title>
+</head>
+
+<body>
+    <canvas id="drawing" width="200" height="200">nocanvas</canvas>
+    <script>
+        var drawing = document.getElementById("drawing");
+        if (drawing.getContext) {
+            var context = drawing.getContext("2d"),
+                imageData,
+                data,
+                pattern;
+            context.fillStyle = "red";
+            context.fillRect(0, 0, 100, 100);
+            imageData = context.getImageData(0, 0, 100, 100);
+            data = imageData.data;
+            for (var i = 0, len = data.length; i < len; i += 4) {
+                var r = data[i],
+                    g = data[i + 1],
+                    b = data[i + 2],
+                    alpha = data[i + 3];
+                data[i] = 0;
+                data[i + 1] = 0;
+                data[i + 2] = 0;
+            }
+            imageData.data = data;
+            context.putImageData(imageData, 0, 0);
+        }
+    </script>
+    <noscript>Done</noscript>
+</body>
+
+</html>
